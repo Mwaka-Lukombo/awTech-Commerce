@@ -9,7 +9,7 @@ const handleValidation = (req,res,next)=>{
 
 
     if(errors.isEmpty()){
-        next();
+        return next();
     }
 
     const extractedErros = [];

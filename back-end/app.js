@@ -16,13 +16,16 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 
+//static files
+app.use('/uploads',express.static('uploads'));
+
+
 //front-end config
 app.use(cors({credential:true, origin:"http:localhost:3000"}));
 
 
 //routes
 const Router = require('./routes/Router');
-
 app.use(Router);
 
 

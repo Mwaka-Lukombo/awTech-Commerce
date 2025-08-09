@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 
 //controller
-const {register} = require('../controllers/userController');
+const {register, login} = require('../controllers/userController');
 
 
 //middlewares
@@ -12,7 +12,8 @@ const {registerValidation} = require('../middlewares/userValidation');
 
 
 //routes
-router.post('/login',registerValidation(),validator,register)
+router.post('/register',registerValidation(),validator,register);
+router.post('/login',login)
 
 
 
