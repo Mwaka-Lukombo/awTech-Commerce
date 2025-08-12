@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 
 //controller
-const {createProduct} = require('../controllers/productController');
+const {createProduct, deleteProduct, getProducts} = require('../controllers/productController');
 
 
 //middlewares
@@ -13,8 +13,9 @@ const {createProductValidation} = require('../middlewares/productValidation');
 
 
 //routes
-router.post('/',AuthGuard,createProductValidation(), validator,uploadFile.single("image"),createProduct);
-
+router.get('/',getProducts);
+router.post('/',AuthGuard,uploadFile.single("image"),validator,createProduct);
+router.delete('/:id',AuthGuard,deleteProduct);
 
 
 

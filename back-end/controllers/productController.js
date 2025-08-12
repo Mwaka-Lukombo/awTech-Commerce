@@ -3,11 +3,11 @@ const Product = require ('../models/product.model');
 
 
 
-
+//create an product
 const createProduct = async (req,res)=>{
   const {name, price, descricao, quantidade, categoria} = req.body 
-   const {userName } = req.user;
-     const image = req.file
+   const {name: userName } = req.user;
+     const image = req.file.filename
 
        if(!name || !price || !descricao || !quantidade || !categoria){
           return res.status(500).json({errors:['Houve um erro inesperrado, por favor tente mais tarde!']})
@@ -19,8 +19,7 @@ const createProduct = async (req,res)=>{
        if(product){
          return res.status(401).json({errors:['O produto já foi cadastrado!']})
        }
-
-       try{
+    
           const newProduct = await Product.create( {
             name,
             price,
@@ -31,18 +30,49 @@ const createProduct = async (req,res)=>{
             userName
          })
 
-         res.status(200).json(newProduct);
-         return {success:true, message:"Produto cadastrado com sucesso!"}
-       }catch(err){
-         return res.status(400).json({errors:['Falha ao cadastrar usuario!']})
-       }
+
+         res.status(200).json(newProduct)
+
+         return {success:true, message:"O produto foi cadastrado com sucesso!"}
+
+}
+
+//delete an product
+const deleteProduct = async(req,res)=>{
+    const {id} = req.params 
+    if(!id){
+       return res.status(500).json({errors:['Houve um erro inesperado tem novamente mais tarde!']})
+    }
+
+    //find and delete
+    try{
+      await Product.findByIdAndDelete(new mongoose.Types.ObjectId(id))
+      
+      res.status(200).json({success:true, message:"O produto foi excluido com sucesso"});
+      
+    }catch(err){
+       console.log(err)
+    }    
+}
+
+//get all products
+const getProducts = async(req,res)=>{
+
+  try{
+     const Products = await Product.find();
+
+     res.status(200).json(Products)
+   }catch(err){
+     console.log(err)
+   }
 
 }
 
 
-
 module.exports ={
-    createProduct
+    createProduct,
+    deleteProduct,
+    getProducts
 }
 
 

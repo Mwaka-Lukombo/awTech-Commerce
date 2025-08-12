@@ -9,9 +9,13 @@ const createProductValidation = ()=>{
         body('name')
         .isString()
         .withMessage('O nome do produto e obrigatorio!'),
-        body('preco')
+        body('price')
         .isString()
         .withMessage('Digite o preco do produto'),
+        body("descricao")
+        .isString()
+        .withMessage("A descricacao e obrigatoria!")
+        ,
         body('quantidade')
         .isString()
         .withMessage('Digite a quantidade do produto'),
