@@ -21,7 +21,7 @@ app.use('/uploads',express.static('uploads'));
 
 
 //front-end config
-app.use(cors({credential:true, origin:"http:localhost:3000"}));
+app.use(cors());
 
 
 //routes

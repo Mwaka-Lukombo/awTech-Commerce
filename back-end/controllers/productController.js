@@ -59,7 +59,7 @@ const deleteProduct = async(req,res)=>{
 const getProducts = async(req,res)=>{
 
   try{
-     const Products = await Product.find();
+     const Products = await Product.find().sort({createdAt:-1});
 
      res.status(200).json(Products)
    }catch(err){

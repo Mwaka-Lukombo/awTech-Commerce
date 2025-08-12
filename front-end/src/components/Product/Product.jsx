@@ -3,18 +3,28 @@ import './Product.css';
 import Camisa from '../../assempts/barca-25-26-home-kit (8).jpg';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 
-export const Product = () => {
+import { uploads } from '../../config/httpRequest';
+
+export const Product = ({
+  name,
+  price,
+  descricao,
+  quantidade,
+  categoria,
+  image,
+  userName
+}) => {
   return (
     <div className='row-products'>
        <div className='flex'> 
        <div className='Product-image'>
-         <img src={Camisa} alt='Camisa do barcelona' />
+         <img src={`${uploads}/products/${image}`} alt={userName} />
        </div>
 
        <div className='product-description'>
-          <h3>Samsung Galaxy A25 128GB|6GB RAM Dual Sim, Azul</h3>
-          <h4>18046,00 MZN</h4>
-          <p>Experimente a combinação perfeita de potência e inovação com o Samsung Galaxy A25 5G. Equipado com uma Câmera Tripla Traseira de até 50MP com Estabilização Óptica, este smartphone permite capturar fotos incrivelmente nítidas e estáveis, enquanto a câmera de selfie de 13MP garante autorretratos impressionantes.</p>
+          <h3>{name}</h3>
+          <h4>{price} MZN</h4>
+          <p>{descricao}</p>
        </div>
 
        </div>

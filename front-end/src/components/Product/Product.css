@@ -23,7 +23,7 @@
 
 
 .product-description h3{
-    font-size: 1.4em;
+    font-size: 1em;
     color: #4a5678;
     margin-bottom: 10px;
 }
@@ -33,6 +33,7 @@
 }
 
 .product-description p{
+    font-size: 0.9em;
     line-height: 22px;
     font-weight: normal;
 }

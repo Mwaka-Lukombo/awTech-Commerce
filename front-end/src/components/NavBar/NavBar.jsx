@@ -9,7 +9,7 @@ export const NavBar = () => {
   return (
     <>
     <div className="min-header">
-        <p>Bem-vindo ao awTech commerce! <Link to='/register'>Criar conta</Link> ou <Link to='/login'>Iniciar sessão</Link></p>
+        <p>Bem-vindo ao awTech commerce! <Link  to='/register'>Criar conta</Link> ou <Link to='/login'>Iniciar sessão</Link></p>
     </div>
     <nav className='navbar'> 
        <div className="logo">
@@ -30,7 +30,7 @@ export const NavBar = () => {
           </li>
 
           <li>
-            <NavLink to='/promocoes'>Promocoes</NavLink>
+            <NavLink to='/promocoes'>Promoções</NavLink>
           </li>
        </ul>
 
