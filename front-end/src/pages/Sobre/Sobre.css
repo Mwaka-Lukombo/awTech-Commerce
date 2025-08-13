@@ -1,0 +1,61 @@
+.row-left .image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+#sobre{
+  text-align: justify;  
+}
+
+#sobre p{
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 25px;
+}
+
+#sobre form{
+    max-width: 500px;
+    margin: 5px auto;
+}
+
+#sobre form span{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#sobre form input:not([type=submit]){
+    width: 80%;
+    height: 32px;
+    padding-left: 12px;
+    outline: none;
+    border: 1px solid #ccc;
+    letter-spacing: 0.2px;
+}
+
+#sobre form input[type=submit]{
+    width: 20%;
+    height: 32px;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    background: #eb4034;
+    transition: .3s ease;
+}
+
+#sobre form input[type=submit]:hover{
+    background: #83150e;
+}
+
+
+
+
+
+
+
+
+
+

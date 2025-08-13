@@ -27,8 +27,6 @@ export const Product = ({
           <p>{descricao}</p>
        </div>
 
-       </div>
-
        <div className='row-add-cart'>
            <button>
              <FaShoppingCart />
@@ -38,6 +36,10 @@ export const Product = ({
             <FaHeart  />
            </button>
        </div>
+
+       </div>
+
+       
     </div>
   )
 }

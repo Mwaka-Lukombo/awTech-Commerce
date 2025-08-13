@@ -17,7 +17,7 @@ const createProduct = async (req,res)=>{
        const product = await Product.findOne({name:name, descricao:descricao});
 
        if(product){
-         return res.status(401).json({errors:['O produto já foi cadastrado!']})
+         return res.status(401).json({success:false,errors:['O produto já foi cadastrado!']})
        }
     
           const newProduct = await Product.create( {
@@ -31,9 +31,11 @@ const createProduct = async (req,res)=>{
          })
 
 
-         res.status(200).json(newProduct)
-
-         return {success:true, message:"O produto foi cadastrado com sucesso!"}
+          res.status(200).json({
+           success:true,
+           message:"O produto foi cadastrado com sucesso!",
+           product
+         })
 
 }
 

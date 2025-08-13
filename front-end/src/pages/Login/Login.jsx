@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Login = () => {
   return (
-    <div className='container' style={{marginBottom:'200px',marginTop:'20px'}}>
+    <div className='container' style={{marginBottom:'130px',marginTop:'20px'}}>
        <form>
           <label>
              <span>E-mail:</span>

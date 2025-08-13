@@ -37,6 +37,10 @@ html,body,#root{
     text-decoration: underline;
 }
 
+.icon-mobile{
+    display: none;
+}
+
 
 /* navbar */
 nav{
@@ -46,6 +50,11 @@ nav{
     padding: 0 4%;
     height: 100px;
     background-color: #fafafa;
+}
+
+nav .logo a{
+    text-decoration: none;
+    color: #363636;
 }
 
 nav ul{
@@ -89,6 +98,12 @@ nav ul a{
     border-radius: 20px;
     color: #fff;
     background: var(--rede-color);
+}
+
+a.auth-active{
+    text-decoration: underline;
+    text-decoration-color: red;
+    font-weight: bold;
 }
 
 /* search-category */
@@ -141,6 +156,7 @@ nav ul a{
     padding: 30px;
     margin-top: 20px;
     display: flex;
+    flex-wrap: nowrap;
     gap: 1em;
 }
 
@@ -181,8 +197,8 @@ nav ul a{
     margin: 20px auto;
     margin-bottom: 20px;
     box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
--webkit-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
--moz-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
 }
 
 .container form{
@@ -220,6 +236,69 @@ nav ul a{
     background: #c33026;
 }
 
+
+
+/* media screen */
+
+@media (max-width:950px){
+    .row-container{
+        flex-wrap: wrap;
+    }
+
+    .row-right,
+    .row-left{
+        width: 100%;
+    }
+
+    /* navbar */
+    .icon-mobile{
+        display: block;
+        padding: 15px;
+        cursor: pointer;
+        border: 0;
+        color: #fff;
+        font-size: 1.4em;
+        background: #eb4034;
+        transition: .3s ease;
+    }
+
+    .icon-mobile:hover{
+        background: #c33026;
+    }
+
+    nav ul{
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        top: 135px;
+        left: 0;
+        width: 100%;
+        height: 300px;
+        background: #c33026;
+        z-index: 3;
+    }
+
+    nav ul li{
+        padding: 10px;
+    }
+
+    nav ul a{
+        color: #fff;
+    }
+}
+
+
+@media (max-width:560px){
+    .min-header p{
+     font-size: 0.9em;
+    }
+
+    nav ul{
+        top: 130px;
+    }
+}
 
 /* footer */
 footer{

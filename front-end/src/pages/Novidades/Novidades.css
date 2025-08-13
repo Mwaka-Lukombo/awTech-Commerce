@@ -1,0 +1,30 @@
+h3.title{
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+h3.title::after{
+    position: absolute;
+    content: "";
+    width: 150px;
+    height: 2px;
+    left: 57%;
+    bottom: 50%;
+    background: #eb4034;
+}
+
+h3.title::before{
+    position: absolute;
+    content: "";
+    width: 150px;
+    height: 2px;
+    right: 57%;
+    bottom: 50%;
+    background: #eb4034;
+}
+
+
+
+

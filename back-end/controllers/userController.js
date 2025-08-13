@@ -27,7 +27,7 @@ const register = async(req,res)=>{
    const user = await User.findOne({email:email});
 
    if(user){
-     return res.status(401).json({errors:['O usuário já existe']})
+     return res.status(401).json({success:false,errors:['O usuário já existe']})
    }
 
    //create password hash
@@ -45,9 +45,8 @@ const register = async(req,res)=>{
     //genearte token
     const token = generateToken(newUser._id);
 
-      res.status(201).json({newUser,token});
+      res.status(201).json(newUser);
 
-      return {success:true, message:"Usuario cadastrado com sucesso!"}
 }
 
 
@@ -64,20 +63,18 @@ const login = async(req,res)=>{
     const user = await User.findOne({email:email});
 
     if(!user){
-      return res.status(404).json({errors:['O usuario não existe!']})
+      return res.status(404).json({success:false,errors:['O usuario não existe!']})
     }
 
     //check password
     if(!(await(bcrypt.compare(password, user.password)))){
-       return res.status(401).json({errors:['A palavra passe não confere!']})
+       return res.status(401).json({success:false,errors:['A palavra passe não confere!']})
     }
      
 
      //generate token
      const token = generateToken(user._id);
-     res.status(200).json({user,token})
-
-     return {success:true, message:"Login efetuado com sucesso!"}
+     res.status(200).json({user,token,success:true, message:"Login efetuado com sucesso!"})
 }
 
 
