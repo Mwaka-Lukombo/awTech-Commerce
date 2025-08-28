@@ -8,7 +8,9 @@ const register = async(dataUser)=>{
      const data = await fetch(api+'/user/register',config);
       const res = await data.json();
 
-     if(res){
+      console.log("Eu recebo: "+{res})
+
+     if(res._id){
         localStorage.setItem("user", JSON.stringify(res))
      }
 

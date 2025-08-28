@@ -42,10 +42,20 @@ const register = async(req,res)=>{
       })
 
       
-    //genearte token
+   try{
+     //genearte token
     const token = generateToken(newUser._id);
 
-      res.status(201).json(newUser);
+      res.status(201).json({
+        _id:newUser._id,
+        name:newUser.name,
+        email:newUser.email,
+        token
+      });
+   }catch(error){
+      console.log("Falha ao cadastrar o usuario: ",error);
+      return res.status(401).json({errors:['Houve um erro, tente novamente mais tarde!']})
+   }
 
 }
 
@@ -74,7 +84,12 @@ const login = async(req,res)=>{
 
      //generate token
      const token = generateToken(user._id);
-     res.status(200).json({user,token,success:true, message:"Login efetuado com sucesso!"})
+     res.status(200).json({
+       _id:user._id,
+       name:user.name,
+       email:user.email,
+       token
+     })
 }
 
 

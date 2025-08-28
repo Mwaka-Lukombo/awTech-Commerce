@@ -1,11 +1,11 @@
 import './process.css';
 
-import Loader from '../../assempts/loader.gif'
+import { Loader } from 'lucide-react';
 
 export const Process = () => {
   return (
     <div className='overlay-geral'>
-        <img src={Loader} alt='loader da aplicacao' />
+        <Loader />
     </div>
   )
 }

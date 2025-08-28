@@ -1,22 +1,33 @@
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 
 //icons
-import { FaBars, FaSearch, FaShoppingCart} from 'react-icons/fa';
+import { FaBars, FaDoorClosed, FaPowerOff, FaSearch, FaShoppingCart} from 'react-icons/fa';
 
 //hooks
 import { useAuth } from "../../hooks/useAuth";
+import { authStore } from "../../store/authStore";
+import { LogOut } from "lucide-react";
 
 export const NavBar = () => {
 
-  const {Auth} = useAuth();
+  const Auth = useAuth();
+    const {logout} = authStore();
+
+      const handleLogout = ()=>{
+         logout();
+      }
+
+      console.log("Estado da navbar:",Auth)
   
   return (
     <>
+    {!Auth && (
     <div className="min-header">
         <p>Bem-vindo ao awTech commerce! <NavLink className={({isActive})=> isActive ? 'auth-active' : ''}   to='/register'>Criar conta</NavLink> ou <NavLink className={({isActive}) => isActive ? 'auth-active' : ''} to='/login'>Iniciar sessão</NavLink></p>
     </div>
+      )}
     <nav className='navbar'> 
        <div className="logo">
           <Link to='/'>
@@ -25,22 +36,39 @@ export const NavBar = () => {
        </div>
 
        <ul> 
-             <li>
+
+        {Auth ? (
+          <>
+          <li>
             <NavLink to='/'>Home</NavLink>
           </li>
 
           <li>
+            <NavLink to='/produtos'>Produtos</NavLink>
+          </li>
+
+          <li>
+            <NavLink to='/usuarios'>Usuarios</NavLink>
+          </li>
+
+          <li>
+            <NavLink to='/createPromo'>Promoções</NavLink>
+          </li>
+
+        
+            <LogOut className="logout" onClick={handleLogout} />
+      
+          </>
+        ) : (
+          <>
+          
+             <li>
             <NavLink to='/sobre'>Sobre</NavLink>
           </li>
 
-          <li>
-            <NavLink to='/novidades'>Novidades</NavLink>
-          </li>
-
-          <li>
-            <NavLink to='/promocoes'>Promoções</NavLink>
-          </li>
-    
+          </>
+        )}
+             
      
        </ul>
 
@@ -59,28 +87,11 @@ export const NavBar = () => {
        </button>
     </nav>
 
-   
+    {Auth  && (
     <div className="search-category">
-       {Auth  && (
-         <>
-        <div className="category-display">
-
-        </div>
-      <form>
-        <select>
-            <option selected>Categoria:</option>
-            <option>Camisas</option>
-            <option>Celulares</option>
-            <option>Calsados</option>
-        </select>
-        <input type="text" placeholder="Insira a sua pesquisa" />
-         <button>
-            <FaSearch />
-         </button>
-      </form>
-        </>
-          )}
+      
     </div>
+     )}
     
     </>
   )

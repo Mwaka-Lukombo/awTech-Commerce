@@ -16,18 +16,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import { getProducts } from '../../slices/productSlice';
 import { Process } from '../../components/process/Process';
 
-
+//Auth
+import { useAuth } from '../../hooks/useAuth';
 
 export const Home = () => {
 
   const dispatch = useDispatch();
     const {products, loading, message} = useSelector((state)=> state.products);
+     
+      const Auth = useAuth();
 
     useEffect(()=>{
        dispatch(getProducts())
     },[dispatch])
-
-    console.log(products)
+    
   return (
 
     <>

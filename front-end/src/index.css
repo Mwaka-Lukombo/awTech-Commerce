@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Open sans", sans-serif;
     font-weight: 500;
 }
 
@@ -50,6 +50,7 @@ nav{
     padding: 0 4%;
     height: 100px;
     background-color: #fafafa;
+    border-bottom: 2px solid #4a5678;
 }
 
 nav .logo a{
@@ -59,6 +60,7 @@ nav .logo a{
 
 nav ul{
     display: flex;
+    align-items: center;
     gap: 1em;
     list-style: none;
 }
@@ -105,6 +107,8 @@ a.auth-active{
     text-decoration-color: red;
     font-weight: bold;
 }
+
+
 
 /* search-category */
 .search-category{
@@ -190,7 +194,16 @@ a.auth-active{
 
 /* container register */
 .container{
-    max-width: 700px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 500px;
+    min-height: 270px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 95%;
     padding: 20px;
     background: #fff;
@@ -201,10 +214,6 @@ a.auth-active{
     -moz-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
 }
 
-.container form{
-    display: flex;
-    flex-direction: column;
-}
 
 .container form label span{
     display: inline-block;
@@ -212,34 +221,169 @@ a.auth-active{
     margin-bottom: 10px;
 }
 
+.container form label{
+    position: relative;
+}
+
+
+
 .container form input:not([type=submit]){
+    position: relative;
     width: 100%;
-    height: 30px;
+    height: 35px;
     padding-left: 12px;
     border: 1px solid #ccc;
     outline: none;
-    margin-bottom: 10px;
+    font-size: 0.9em;
+    letter-spacing: 0.2px;
+    margin-bottom: 15px;
+    transition: 0.2s ease;
+}
+
+.container form input:not([type=submit]):focus{
+    border-color: #4a5678;
+}
+
+.container form label svg{
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    cursor: pointer;
+    color: #363636;
 }
 
 
 .container form input[type=submit]{
-    width: 100px;
-    height: 32px;
+    width: 100%;
+    height: 35px;
     border: 0;
     color: #fff;
     cursor: pointer;
     transition: .3s ease;
+    border-radius: 20px;
     background: var(--rede-color);
+}
+
+.container form input[type=submit]:disabled{
+    cursor: not-allowed;
+    background: #363636;
 }
 
 .container form input[type=submit]:hover{
     background: #c33026;
 }
 
+.logout{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: 1px solid #ccc;
+}
 
+.logout:hover{
+    color: #fff;
+    background: #eb4034;
+}
+
+.info-container{
+    position: relative;
+    top: 10px;
+}
+
+.info-container p{
+    font-size: 0.9em;
+    font-weight: normal;
+    letter-spacing: 0.2px;
+}
+
+.info-container a{
+    color: #c33026;
+    font-weight: bold;
+}
+
+
+
+/* produtos */
+.container-produtos{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+    height: 38px;
+    cursor: pointer;
+}
+
+.button-container button{
+    width: 100px;
+    height: 100%;
+    margin: 0 12px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    transition: .3s ease;
+}
+
+.create{
+    background: #eb4034;
+}
+
+.create:hover{
+    background: #a63831;
+}
+
+.list{
+    background: #41cc70;
+}
+
+.list:hover{
+    background: #339052;
+}
+
+.create-content{
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    margin-bottom:20px ;
+}
+
+.create-content form{
+    display: flex;
+    flex-direction: column;
+}
+
+.create-content form label span{
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.create-content form input:not([type=submit]),
+select,
+textarea{
+    width: 100%;
+    height: 30px;
+    outline: none;
+    padding-left: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.create-content textarea{
+    height: 120px;
+}
 
 /* media screen */
-
 @media (max-width:950px){
     .row-container{
         flex-wrap: wrap;
@@ -301,14 +445,17 @@ a.auth-active{
 }
 
 /* footer */
-footer{
+/* footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--rede-color);
     color: #fff;
-}
+} */
 
 footer span{
     font-weight: bold;

@@ -10,27 +10,37 @@ import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
 
 //hooks
-import { useAuth } from './hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 import { Novidades } from './pages/Novidades/Novidades';
 
+//hot toaster
+import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
+import { authStore } from './store/authStore';
+import { useAuth } from './hooks/useAuth';
+import { Produtos } from './pages/Produtos/Produtos';
 
 
 function App() {
- 
-  const {Auth} = useAuth();
+  const Auth = useAuth();
+
+  console.log("Da pagina home:",Auth)
+
 
   return (
+
     <div className="App">
       <NavBar />
       <Routes>        
-        <Route path='/' element={<Home />} />
-        <Route path='/sobre' element={<Sobre /> } />
-        <Route path='/novidades' element={<Novidades />} />
-        <Route path='/promocoes' element={<Promocoes />} />
-        <Route path='/login' element={<Login /> } />
-        <Route path='/register' element={<Register />} />
+        <Route path='/' element={ Auth ? <Home /> : <Navigate to='/login' />  } />
+        <Route path='/sobre' element={!Auth || Auth ? <Sobre /> : <Navigate to='/login' />  } />
+        <Route path='/produtos' element={Auth ? <Produtos /> : <Navigate to='/login' />} />
+        <Route path='/novidades' element={ Auth ? <Novidades /> : <Navigate to='/login' /> } />
+        <Route path='/promocoes' element={Auth ? <Promocoes /> : <Navigate to='/login' />} />
+        <Route path='/login' element={!Auth ? <Login /> : <Navigate to='/' />} />
+        <Route path='/register' element={!Auth ? <Register /> : <Navigate to='/' />} />
       </Routes>
+      <Toaster />
       <Footer />
     </div>
   );
