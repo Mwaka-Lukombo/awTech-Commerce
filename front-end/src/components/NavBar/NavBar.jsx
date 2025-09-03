@@ -5,22 +5,36 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 //icons
 import { FaBars, FaDoorClosed, FaPowerOff, FaSearch, FaShoppingCart} from 'react-icons/fa';
 
+//react
+import {useState, useEffect} from 'react';
+
+
 //hooks
 import { useAuth } from "../../hooks/useAuth";
-import { authStore } from "../../store/authStore";
 import { LogOut } from "lucide-react";
 
+//productStore
+import { productStore } from "../../store/produtcStore";
+import { authStore } from "../../store/authStore";
+import { Carrinho } from "../Carrinho/Carrinho";
+
+
+
 export const NavBar = () => {
+   const [showCarrinho, setShowCarrinho] = useState(false);
+    const Auth = useAuth();
+      const {logout} = authStore();
+        const handleLogout = ()=>{
+          logout();
+        }
+         const {isLoading,carrinhoProduct, getCart} = productStore();
+           const {user} = authStore();     
+                   
+         useEffect(()=>{
+            getCart();
+         },[])
 
-  const Auth = useAuth();
-    const {logout} = authStore();
-
-      const handleLogout = ()=>{
-         logout();
-      }
-
-      console.log("Estado da navbar:",Auth)
-  
+         
   return (
     <>
     {!Auth && (
@@ -75,10 +89,13 @@ export const NavBar = () => {
        {Auth && (
         <div className="carrinho-compras">
           <FaShoppingCart />
-          <div className="content-cart">
-            <h4>Carrinho de compras</h4>
-            <p className="price-cart">0 item - 0,00MZN</p>
-          </div>
+
+        
+            <div className="content-cart" style={{cursor:'pointer'}} onClick={()=> setShowCarrinho(!showCarrinho)}>
+              <h4>Carrinho de compras</h4>
+              <p className="price-cart">0 item - 0,00MZN</p>
+            </div>
+       
        </div>
        )}
 
@@ -86,6 +103,12 @@ export const NavBar = () => {
          <FaBars />
        </button>
     </nav>
+
+      <Carrinho 
+      showCarrinho={showCarrinho} 
+      setShowCarrinho={setShowCarrinho} 
+      produtos={carrinhoProduct}
+      />
 
     {Auth  && (
     <div className="search-category">

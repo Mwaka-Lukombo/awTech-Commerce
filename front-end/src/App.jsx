@@ -9,6 +9,7 @@ import { Footer } from './components/Footer/Footer';
 import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
 
+
 //hooks
 import { Navigate } from 'react-router-dom';
 import { Novidades } from './pages/Novidades/Novidades';

@@ -1,11 +1,15 @@
 import './Product.css';
-
-import Camisa from '../../assempts/barca-25-26-home-kit (8).jpg';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-
 import { uploads } from '../../config/httpRequest';
 
+//react
+import {useState, useEffect} from 'react';
+
+//Product stores
+import { productStore } from '../../store/produtcStore';
+
 export const Product = ({
+  _id,
   name,
   price,
   descricao,
@@ -14,6 +18,20 @@ export const Product = ({
   image,
   userName
 }) => {
+
+   const [carrinho, setCarrinho] = useState({
+    _id,
+    name,
+    price,
+    image,
+    descricao
+   })
+
+   const {isLoading,addCart,carrinhoProduct} = productStore();
+
+  const handleCart = ()=>{
+    addCart(carrinho)
+  }
   return (
     <div className='row-products'>
        <div className='flex'> 
@@ -28,8 +46,16 @@ export const Product = ({
        </div>
 
        <div className='row-add-cart'>
+
            <button>
-             <FaShoppingCart />
+             <FaShoppingCart onClick={()=>{
+               handleCart(_id)
+               setCarrinho({...carrinho,idProduct:_id});
+               setCarrinho({...carrinho,name:name})
+               setCarrinho({...carrinho,price:price})
+               setCarrinho({...carrinho,image:image})
+               setCarrinho({...carrinho,descricao:descricao})
+             }} />
            </button>
 
            <button>

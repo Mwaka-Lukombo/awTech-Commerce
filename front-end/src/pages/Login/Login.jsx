@@ -38,7 +38,7 @@ export const Login = () => {
 
 
   return (
-    <div className='container'>
+    <div className='container' style={{marginBottom:"120px",marginTop:"100px"}}>
       <h3>Efectue o login:</h3>
        <form onSubmit={handleSubmit}>
           <label>
@@ -49,7 +49,7 @@ export const Login = () => {
              />
           </label>
 
-          <label>
+          <label className='input-password'>
             <span>Password:</span>
             <input type={showPassword ? "text" : "password"} placeholder='Digite a sua senha'
              onChange={(e)=> setUser({...user,password : e.target.value})}

@@ -194,10 +194,7 @@ a.auth-active{
 
 /* container register */
 .container{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+
     max-width: 500px;
     min-height: 270px;
     border-radius: 20px;
@@ -228,7 +225,6 @@ a.auth-active{
 
 
 .container form input:not([type=submit]){
-    position: relative;
     width: 100%;
     height: 35px;
     padding-left: 12px;
@@ -244,10 +240,17 @@ a.auth-active{
     border-color: #4a5678;
 }
 
+.input-password{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
 .container form label svg{
     position: absolute;
     top: 50%;
-    right: 12px;
+    right: 5px;
+    transform: translateY(-25%);
     cursor: pointer;
     color: #363636;
 }
@@ -347,12 +350,15 @@ a.auth-active{
 }
 
 .create-content{
-    width: 100%;
+    max-width: 1000px;
+    width: 95%;
     background: #fff;
     padding: 20px;
+    margin: 0 auto;
     box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
     -webkit-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    margin-top: 20px;
     margin-bottom:20px ;
 }
 
@@ -380,7 +386,40 @@ textarea{
 }
 
 .create-content textarea{
+    padding: 10px;
     height: 120px;
+    resize: none;
+}
+
+.create-content form input[type=submit]{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    background: #eb4034;
+    color: #fff;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-weight: normal;
+    transition: .3s ease;
+}
+
+.create-content form input[type=submit]:hover{
+    background: #a63831;
+}
+
+.file-content{
+    display: flex;
+    align-items: center;
+    height: 35px;
+    background: #a63831;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.file-content span{
+    display: inline-block;
+    width: 100%;
 }
 
 /* media screen */
@@ -445,17 +484,14 @@ textarea{
 }
 
 /* footer */
-/* footer{
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+footer{
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--rede-color);
     color: #fff;
-} */
+}
 
 footer span{
     font-weight: bold;

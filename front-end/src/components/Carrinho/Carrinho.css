@@ -1,0 +1,124 @@
+.hide{
+    display: none;
+}
+
+.carrinho-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    transition: 1s ease;
+    box-shadow: 6px 2px 5px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 6px 2px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 2px 5px 0px rgba(0,0,0,0.75);
+}
+
+.top-cart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.top-cart span{
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+.top-cart span svg{
+    margin-right: 4px;
+    color: #c23e34;
+    font-weight: bold;
+}
+
+.close-btn{
+    font-size: 25px;
+    color: #eb4034;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+
+
+.close-btn:hover{
+    color:#040404;
+}
+
+
+/* middle-cart */
+.middle-cart{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.img-product{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+}
+
+.img-product img{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: none;
+}
+
+.description-product h3{
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-bottom: 1px;
+}
+
+.description-product p{
+    font-size: 0.8em;
+    margin-bottom: 1px;
+}
+
+.description-product input[type=number]{
+    width: 100%;
+    height: 25px;
+    outline: none;
+    border: 1px solid #ccc;
+    padding-left: 12px;
+    border-radius:10px;
+}
+
+.trash{
+    position: relative;
+    top: 5px;
+    width: 100px;
+    height: 30px;
+    background: #eb4034;
+    transition: .3s ease;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: 0;
+    color: #fff;
+}
+
+.trash:hover{
+    background: #c23e34;
+}
+
+
+.footer-cart h3{
+    font-weight: bold;
+}
+
+
