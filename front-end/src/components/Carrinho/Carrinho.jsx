@@ -8,6 +8,7 @@ import { ClosedCaption, Store, StoreIcon, TrashIcon } from 'lucide-react';
 //uploads
 import {uploads} from '../../config/httpRequest';
 import { useEffect, useState } from 'react';
+import { productStore } from '../../store/produtcStore';
 
 export const Carrinho = ({
   showCarrinho,
@@ -15,6 +16,7 @@ export const Carrinho = ({
   produtos
 }) => {
    const [total, setTotal] = useState(0);
+     const {deleteCart} = productStore();
 
    useEffect(()=>{
     if(produtos.length > 0 ){
@@ -30,6 +32,10 @@ export const Carrinho = ({
     }
    },[produtos])
 
+   const handleDelete = (id)=>{
+     deleteCart(id)
+   }
+
   return (
     <div className={`carrinho-content ${!showCarrinho ? 'hide' : ''}` }>
         <div className='top-cart'>
@@ -38,11 +44,10 @@ export const Carrinho = ({
         </div>
 
         {produtos.length === 0 && (
-          <p>O Carrinho esta vazío</p>
+          <p style={{margin:"20px 0"}}>O Carrinho está vazío</p>
         )}
 
         {produtos && produtos.map((produto)=> (
-          
           <div className='middle-cart'>
             <div className='product-content'>
               <div className='img-product'>
@@ -55,7 +60,7 @@ export const Carrinho = ({
                 <input type='number' min={1} placeholder='Quantidade' value={produto.quantidade || ''} />
               </div>
 
-              <button className='trash'>
+              <button className='trash' onClick={()=> handleDelete(produto._id)}>
                 <TrashIcon />
               </button>
             </div>

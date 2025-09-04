@@ -12,6 +12,7 @@ import {useState, useEffect} from 'react';
 //hooks
 import { useAuth } from "../../hooks/useAuth";
 import { LogOut } from "lucide-react";
+import { uploads } from "../../config/httpRequest";
 
 //productStore
 import { productStore } from "../../store/produtcStore";
@@ -22,19 +23,23 @@ import { Carrinho } from "../Carrinho/Carrinho";
 
 export const NavBar = () => {
    const [showCarrinho, setShowCarrinho] = useState(false);
+   const [profileImage, setProfileImage] = useState(null);
     const Auth = useAuth();
       const {logout} = authStore();
         const handleLogout = ()=>{
           logout();
         }
-         const {isLoading,carrinhoProduct, getCart} = productStore();
-           const {user} = authStore();     
-                   
-         useEffect(()=>{
-            getCart();
-         },[])
+         const {carrinhoProduct, getCart} = productStore();
+         const {user} = authStore.getState();
 
-         
+         const total = carrinhoProduct.reduce((acc,produto)=> acc + produto.price * produto.quantidade,0)
+           
+          useEffect(()=>{
+            getCart()
+          },[carrinhoProduct])
+
+      
+
   return (
     <>
     {!Auth && (
@@ -68,9 +73,17 @@ export const NavBar = () => {
           <li>
             <NavLink to='/createPromo'>Promoções</NavLink>
           </li>
-
+        <div className="perfil-content-user">
+          <NavLink to="/profile" className={({isActive})=> isActive ? '' : ''} >
+           <div className="top-user-perfil">
+             <img src={user.profileImage ? `${uploads}/users/${user.profileImage}` : './user.png'} alt="profile image" />
+           </div>
+           </NavLink>
+        </div>
         
             <LogOut className="logout" onClick={handleLogout} />
+
+          
       
           </>
         ) : (
@@ -93,7 +106,7 @@ export const NavBar = () => {
         
             <div className="content-cart" style={{cursor:'pointer'}} onClick={()=> setShowCarrinho(!showCarrinho)}>
               <h4>Carrinho de compras</h4>
-              <p className="price-cart">0 item - 0,00MZN</p>
+              <p className="price-cart">{carrinhoProduct.length } item - {total} MZN</p>
             </div>
        
        </div>

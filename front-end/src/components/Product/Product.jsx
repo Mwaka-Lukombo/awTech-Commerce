@@ -1,4 +1,6 @@
 import './Product.css';
+
+//icons
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { uploads } from '../../config/httpRequest';
 
@@ -7,6 +9,7 @@ import {useState, useEffect} from 'react';
 
 //Product stores
 import { productStore } from '../../store/produtcStore';
+import { authStore } from '../../store/authStore';
 
 export const Product = ({
   _id,
@@ -19,18 +22,32 @@ export const Product = ({
   userName
 }) => {
 
+  //insercacao de dados no carrinho
+   const {isLoading,addCart} = productStore();
+    const {user} = authStore();
+
    const [carrinho, setCarrinho] = useState({
     _id,
     name,
     price,
     image,
-    descricao
+    descricao,
+    userId: user?._id,
+    userName
    })
 
-   const {isLoading,addCart,carrinhoProduct} = productStore();
-
+ //mudar os dados do usaurio 
+   useEffect(()=>{
+      setCarrinho((prev) => ({
+    ...prev,
+      userName:user.name,
+      userId:user._id
+    }))
+   },[user])
+   
+  
   const handleCart = ()=>{
-    addCart(carrinho)
+    addCart(carrinho);
   }
   return (
     <div className='row-products'>
@@ -55,6 +72,7 @@ export const Product = ({
                setCarrinho({...carrinho,price:price})
                setCarrinho({...carrinho,image:image})
                setCarrinho({...carrinho,descricao:descricao})
+               setCarrinho({...carrinho,userName:user.name});
              }} />
            </button>
 

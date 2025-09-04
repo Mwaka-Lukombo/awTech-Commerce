@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 
 //controller
-const {createProduct, deleteProduct, getProducts, carrinho, getProductsCart} = require('../controllers/productController');
+const {createProduct, deleteProduct, getProducts, carrinho, getProductsCart, deleteCart} = require('../controllers/productController');
 
 
 //middlewares
@@ -15,7 +15,8 @@ const {createProductValidation} = require('../middlewares/productValidation');
 //routes
 router.get('/',getProducts);
 router.post('/carrinho/:id',AuthGuard,carrinho);
-router.get('/carrinho/',AuthGuard,getProductsCart)
+router.get('/carrinho/',AuthGuard,getProductsCart);
+router.delete('/carrinho/:id',AuthGuard,deleteCart)
 router.post('/',AuthGuard,uploadFile.single("image"),validator,createProduct);
 router.delete('/:id',AuthGuard,deleteProduct);
 

@@ -24,7 +24,6 @@ export const Home = () => {
   const dispatch = useDispatch();
     const {products, loading, message} = useSelector((state)=> state.products);
      
-      const Auth = useAuth();
 
     useEffect(()=>{
        dispatch(getProducts())

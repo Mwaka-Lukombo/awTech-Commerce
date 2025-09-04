@@ -88,14 +88,54 @@ const login = async(req,res)=>{
        _id:user._id,
        name:user.name,
        email:user.email,
+       profileImage:user.profileImage,
        token
      })
 }
 
 
+const update = async(req,res)=>{
+  const {password,confirmPassword} = req.body 
+   let profileImage = null
+     const id = req.user._id
+
+    if(req.file){
+       profileImage = req.file.filename
+    }
+
+   if(!password){
+     return res.status(401).json({errors:['Você não pode passar dados vazíos']})
+   }
+
+   if(password !== confirmPassword){
+     return res.status(401).json({errors:['A palavra passe não confere']})
+   }
+
+   //verficar se o usario existe
+   const user = await User.findOne({_id:id});
+
+   if(!user){
+     return res.status(404).json({errors:['Usuário não encontrado!']})
+   }
+
+   //crypting password
+   const salt = await bcrypt.genSalt(12);
+    const hashPassword = await bcrypt.hash(password, salt);
+
+   const newUser = {
+     password: hashPassword,
+     profileImage
+   }
+
+    await User.findByIdAndUpdate(id,newUser,{new:true})
+   res.status(200).json({newUser})
+}
+
+
 module.exports = {
     register,
-    login 
+    login,
+    update
 }
 
 
