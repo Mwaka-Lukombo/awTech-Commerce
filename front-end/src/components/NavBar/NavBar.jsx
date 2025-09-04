@@ -106,7 +106,7 @@ export const NavBar = () => {
         
             <div className="content-cart" style={{cursor:'pointer'}} onClick={()=> setShowCarrinho(!showCarrinho)}>
               <h4>Carrinho de compras</h4>
-              <p className="price-cart">{carrinhoProduct.length } item - {total} MZN</p>
+              <p className="price-cart">{carrinhoProduct.length } {carrinhoProduct.length > 1 ? "itens" : "item"} - {total.toLocaleString()} MZN</p>
             </div>
        
        </div>

@@ -8,10 +8,14 @@ const Carrinho = require('../models/carrinho.model');
 const createProduct = async (req,res)=>{
   const {name, price, descricao, quantidade, categoria} = req.body 
    const {name: userName } = req.user;
-     const image = req.file.filename
+      let image = null; 
+
+      if(req.file){
+         image = req.file.filename
+      }
 
        if(!name || !price || !descricao || !quantidade || !categoria){
-          return res.status(500).json({errors:['Houve um erro inesperrado, por favor tente mais tarde!']})
+          return res.status(500).json({errors:['Algum campo está vazío!']})
        }
 
        //check if product exists
@@ -121,7 +125,7 @@ const getProductsCart = async(req,res)=>{
    const userName = req.user.name
 
   
-  const Products = await Carrinho.find({userId:userId});
+  const Products = await Carrinho.find({userId:userId}).sort({createdAt:-1});
 
   if(!Products){
     return res.status(404).json({errors:['Carrinho Vazio!']})

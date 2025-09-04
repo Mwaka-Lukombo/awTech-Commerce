@@ -1,0 +1,116 @@
+.row-usuarios{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.usuario-single{
+    display: flex;
+    width: 32%;
+    max-width: 500px;
+    height: 300px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px -1px 11px -1px rgba(0,0,0,0.75);
+}
+
+.left-side-single{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 100%;
+    border-right: 1px solid #ccc;
+    border-radius: 10px 0 0 10px;
+}
+
+.left-sinde-perfil{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 1px solid #ccc;
+}
+
+.left-sinde-perfil img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+/* right side */
+.right-side-single{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 65%;
+    height: 100%;
+    border-radius: 0 10px 10px 0;
+}
+
+.right-side-description{
+    text-align: center;
+}
+
+.right-side-description h3{
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.right-side-description p{
+    font-size: 0.9em;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.right-side-buttons{
+    display: flex;
+    gap: 1em;
+    margin: 5px 0;
+}
+
+.right-side-buttons button{
+    width: 100px;
+    height: 35px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+    transition: .3s ease;
+}
+
+.editar{
+    background:orange;
+}
+
+.deletar{
+    background: tomato;
+}
+
+.editar:hover{
+    background: rgb(194, 138, 35);
+}
+
+.deletar:hover{
+    background: rgb(205, 83, 61);
+}
+
+
+
+
+
+
+
+
+
+

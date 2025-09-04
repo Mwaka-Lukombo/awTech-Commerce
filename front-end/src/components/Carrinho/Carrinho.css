@@ -121,4 +121,10 @@
     font-weight: bold;
 }
 
+@media (max-width:950px){
+    .carrinho-content{
+        width: 100%;
+    }
+
+}
 

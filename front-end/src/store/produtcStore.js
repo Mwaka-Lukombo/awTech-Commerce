@@ -12,11 +12,14 @@ export const productStore = create((set,get) => ({
   createProduct:async(data)=>{
     set({isLoading:true});
     const {user} = authStore.getState();
+    console.log(data)
     try{
         const res = await axiosInstance.post('/api/products',data,{
             headers:{
+              'Content-Type':'multipart/form-data',
                 Authorization: `Bearer ${user.token}`
             }
+          
         });
         set({product:res.data});
         toast.success("O produto foi cadastrado com sucesso!")

@@ -21,6 +21,7 @@ import { authStore } from './store/authStore';
 import { useAuth } from './hooks/useAuth';
 import { Produtos } from './pages/Produtos/Produtos';
 import { Profile } from './pages/Profile/Profile';
+import { Usuarios } from './pages/Usuarios/Usuarios';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/' element={ Auth ? <Home /> : <Navigate to='/login' />  } />
         <Route path='/sobre' element={!Auth || Auth ? <Sobre /> : <Navigate to='/login' />  } />
         <Route path='/produtos' element={Auth ? <Produtos /> : <Navigate to='/login' />} />
+        <Route path='/usuarios' element={Auth ? <Usuarios /> : <Navigate to="/login" />} />
         <Route path='/profile' element={Auth ? <Profile /> : <Navigate to='/login'/>} />
         <Route path='/novidades' element={ Auth ? <Novidades /> : <Navigate to='/login' /> } />
         <Route path='/promocoes' element={Auth ? <Promocoes /> : <Navigate to='/login' />} />

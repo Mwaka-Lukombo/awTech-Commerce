@@ -59,7 +59,6 @@ const register = async(req,res)=>{
 
 }
 
-
 //login 
 const login = async(req,res)=>{
     const {email, password} = req.body;
@@ -92,8 +91,6 @@ const login = async(req,res)=>{
        token
      })
 }
-
-
 const update = async(req,res)=>{
   const {password,confirmPassword} = req.body 
    let profileImage = null
@@ -129,6 +126,12 @@ const update = async(req,res)=>{
 
     await User.findByIdAndUpdate(id,newUser,{new:true})
    res.status(200).json({newUser})
+}
+
+
+const getUsers = async()=>{
+  //get all users
+
 }
 
 

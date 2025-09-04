@@ -9,11 +9,12 @@ import {authStore} from '../../store/produtcStore';
 export const Produtos = () => {
     const [produto, setProduto] = useState({
         name:"",
-        preco:"",
+        price:"",
         image:null,
+        descricao:"",
         quantidade:"",
         categoria:"",
-        descricacao:""
+      
     })
 
 
@@ -29,7 +30,7 @@ export const Produtos = () => {
          toast.error("O campo de nome e obrigatorio!")
       }
 
-      if(!produto.preco){
+      if(!produto.price){
         toast.error("O campo de preco e obrigatorio!")
       }
 
@@ -41,16 +42,25 @@ export const Produtos = () => {
         toast.error("Coloque a categoria");
       }
 
-      if(!produto.descricacao){
+      if(!produto.descricao){
         toast.error("Coloque a descricacao do produto!")
       }
     }
 
+    const [price, setPrice] = useState("");
     const handleSubmit = (e)=>{
         e.preventDefault();
         validationForm();
-        createProduct(produto)
-        setProduto("");
+
+        console.log(produto)
+     
+        const formData = new FormData();
+
+        Object.keys(produto).forEach((key)=>{
+            formData.append(key,produto[key])
+        })
+        createProduct(formData)
+        setProduto("")
     }
   return (
     <div className='container-produtos'>
@@ -68,28 +78,37 @@ export const Produtos = () => {
             <form onSubmit={handleSubmit}>
                 <label>
                     <span>Nome do produto:</span>
-                    <input type='text' placeholder='Nome do produto' onChange={(e) => setProduto({...produto,name:e.target.value})} />
+                    <input type='text' placeholder='Nome do produto' onChange={(e) => setProduto({...produto,name:e.target.value})} 
+                    value={produto.name || ''}
+                    />
+                
                 </label>
 
                 <label>
                     <span>Preço:</span>
-                    <input type='number' min={0} placeholder='Preço' onChange={(e)=> setProduto({...produto,preco:e.target.value})} />
+                    <input type='text' min={0} 
+                    placeholder='Preço' 
+                    onChange={(e)=> setProduto({...produto,price:e.target.value})}
+                    value={produto.price || ''}
+                    />
                 </label>
 
                 <label className='file-content' >
                     <span></span>
                     <Image  />
-                    <input type='file' accept='image/*' style={{display:'none'}} onChange={handleFile}/>
+                    <input type='file' accept='image/*' style={{display:'none'}} onChange={handleFile} />
                 </label>
 
                 <label>
                     <span>Quantidade:</span>
-                    <input type='number' min={1} placeholder='Quantidade' onChange={(e)=> setProduto({...produto,quantidade:e.target.value})} />
+                    <input type='number' min={1} placeholder='Quantidade' onChange={(e)=> setProduto({...produto,quantidade:e.target.value})} 
+                    value={produto.quantidade || ''}
+                    />
                 </label>
 
                 <label>
                     <span>Categoria:</span>
-                    <select onChange={(e)=> setProduto({...produto,categoria:e.target.value})}>
+                    <select onChange={(e)=> setProduto({...produto,categoria:e.target.value})} value={produto.quantidade || ''}>
                         <option value='Sapatos'>Sapatos</option>
                         <option value='Camisas'>Camisas</option>
                         <option value='Cosmeticos'>Cosmeticos</option>
@@ -99,7 +118,7 @@ export const Produtos = () => {
                 <label>
                     <span>Descrição:</span>
                 </label>
-                <textarea placeholder='Descrição' onChange={(e)=> setProduto({...produto,descricacao:e.target.value})}></textarea>
+                <textarea placeholder='Descrição' onChange={(e)=> setProduto({...produto,descricao:e.target.value})} value={produto.descricao || ''}></textarea>
                 <input type='submit' value='Cadastrar' /> 
             </form>
         </div>
