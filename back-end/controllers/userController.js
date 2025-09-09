@@ -129,16 +129,48 @@ const update = async(req,res)=>{
 }
 
 
-const getUsers = async()=>{
-  //get all users
+const getUsers = async(req,res)=>{
+  //listar usuarios excepto o meu id
+ 
+  //get All users
+  const users = await User.find();
 
+  if(!users){
+    return res.status(404).json({errors:['Nenhum usuário econtrado!']})
+  }
+
+
+  res.status(200).json(users)
+
+}
+
+const deleteUser = async(req,res)=>{
+   const {id} = req.params
+
+   if(!id){
+      return res.status(401).json({errors:['id invalido!']})
+   }
+
+   //find user
+   const user = await User.findById(id);
+
+   if(!user){
+     return res.status(404).json({errors:['Usuário não encontrado']})
+   }
+
+   await User.findByIdAndDelete(id,user,{new:true})
+
+   res.status(200).json({message:"Usuário excluido com sucesso!"})
+   
 }
 
 
 module.exports = {
     register,
     login,
-    update
+    update,
+    getUsers,
+    deleteUser
 }
 
 

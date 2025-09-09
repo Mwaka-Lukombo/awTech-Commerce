@@ -41,7 +41,6 @@ function App() {
         <Route path='/usuarios' element={Auth ? <Usuarios /> : <Navigate to="/login" />} />
         <Route path='/profile' element={Auth ? <Profile /> : <Navigate to='/login'/>} />
         <Route path='/novidades' element={ Auth ? <Novidades /> : <Navigate to='/login' /> } />
-        <Route path='/promocoes' element={Auth ? <Promocoes /> : <Navigate to='/login' />} />
         <Route path='/login' element={!Auth ? <Login /> : <Navigate to='/' />} />
         <Route path='/register' element={!Auth ? <Register /> : <Navigate to='/' />} />
       </Routes>

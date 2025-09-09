@@ -70,9 +70,7 @@ export const NavBar = () => {
             <NavLink to='/usuarios'>Usuarios</NavLink>
           </li>
 
-          <li>
-            <NavLink to='/createPromo'>Promoções</NavLink>
-          </li>
+        
         <div className="perfil-content-user">
           <NavLink to="/profile" className={({isActive})=> isActive ? '' : ''} >
            <div className="top-user-perfil">

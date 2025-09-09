@@ -17,6 +17,11 @@ export const Carrinho = ({
 }) => {
    const [total, setTotal] = useState(0);
      const {deleteCart} = productStore();
+      const [quantidade,setQuantidade] = useState(1);
+       const [productId, setProductId] = useState(null);
+
+       //update cart
+       const {updateCart, isLoading} = productStore();
 
    useEffect(()=>{
     if(produtos.length > 0 ){
@@ -34,6 +39,16 @@ export const Carrinho = ({
 
    const handleDelete = (id)=>{
      deleteCart(id)
+   }
+
+   const handleQuantidade = (e)=>{
+     setQuantidade(e.target.value);
+
+     const updateData = {
+       id:productId,
+       quantidade:quantidade
+     }
+     updateCart(updateData)
    }
 
   return (
@@ -57,7 +72,12 @@ export const Carrinho = ({
                 <h3>{produto.name}</h3>
                 <p>Preço: {produto.price}</p>
                 <p>Quantidade: <b>{produto.quantidade}</b></p>
-                <input type='number' min={1} placeholder='Quantidade' value={produto.quantidade || ''} />
+                <input type='number' min={1} placeholder='Quantidade' onChange={(e)=>{
+                  setProductId(produto._id)
+                  handleQuantidade(e)
+                 }}
+                value={produto.quantidade || ''}
+                />
               </div>
 
               <button className='trash' onClick={()=> handleDelete(produto._id)}>

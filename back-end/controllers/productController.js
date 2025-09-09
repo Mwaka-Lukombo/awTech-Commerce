@@ -151,9 +151,42 @@ const deleteCart = async(req,res)=>{
    await Carrinho.deleteOne(product)
    res.status(200).json({success:true,message:"Produto deletado com sucesso!"})
  
+}
 
+
+//update cart
+const updateCart = async(req,res)=>{
+  //get product id
+  const {id} = req.params
+   const {quantidade} = req.body
+
+  if(!id){
+     return res.status(401).json({errors:['Houve um erro tente novamente mais tarde!']})
+  }
+
+  if(!quantidade){
+    return res.status(401).json({errors:['Insira a quantidade!']})
+  }
+
+
+  //find product
+  const product = await Carrinho.findById(id);
+
+  if(!product){
+    return res.status(401).json({errors:['Produto não encontrado!']})
+  }
+
+  const newProduct = {
+    quantidade
+  }
+
+  await Carrinho.findByIdAndUpdate(id,newProduct, {new:true});
+
+  res.status(200).json({product, message:"Produto atualizado com sucesso!"})
 
 }
+
+
 
 
 module.exports ={
@@ -162,7 +195,8 @@ module.exports ={
     getProducts,
     carrinho,
     getProductsCart,
-    deleteCart
+    deleteCart,
+    updateCart
 }
 
 
